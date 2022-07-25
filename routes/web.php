@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BeritaController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,10 +27,24 @@ Route::get('/about', function () {
         'email' => 'nicholausadhyatma@gmail.com',
         'job' => 'Web Developers',
         'image' => 'fotoSaya.jpg',
-        'title' => 'About'
+        'title' => 'About Me'
     ]);
 });
 
 Route::get('/berita', [BeritaController::class, 'index']);
 
 Route::get('berita/{berita:slug}', [BeritaController::class, 'detail']);
+
+Route::get('category/{category:slug}', function(Category $category) {
+    return view('category', [
+        'title' => $category->name,
+        'berita' => $category->berita
+    ]);
+});
+
+Route::get('/categories', function() {
+    return view('categories', [
+        'title' => 'All Categories',
+        'categories' => Category::all()
+    ]);
+});

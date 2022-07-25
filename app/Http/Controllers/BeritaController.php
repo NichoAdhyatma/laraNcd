@@ -9,14 +9,14 @@ class BeritaController extends Controller
 {
     public function index() {
         return view('berita', [
-            'title' => 'Berita',
+            'title' => 'Artikel',
             'berita' => Berita::all()
         ]);
     }
 
     public function detail(Berita $berita) {
         return view('berita-detail', [
-            'title' => 'Berita Detail',
+            'title' => $berita->title,
             'post' => $berita
         ]);
     }

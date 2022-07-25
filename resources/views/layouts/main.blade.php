@@ -18,6 +18,7 @@
     @include('partials.navbar')
 
     <div class="container mt-5">
+        <h1 class="text-center mb-5">{{ $title }}</h1>
         @yield('content')
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
