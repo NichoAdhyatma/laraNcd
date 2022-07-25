@@ -12,7 +12,7 @@
             </h5>
             <p>{{ $post->excerpt }}</p>
             <a class="text-decoration-none" href="/berita/{{ $post->slug }}">
-                <h6>Read more.,.</h6>
+                <h6>Read more...</h6>
             </a>
         </article>
     @endforeach
