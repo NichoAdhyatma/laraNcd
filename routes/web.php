@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Category;
 
@@ -15,15 +18,12 @@ use App\Models\Category;
 |
 */
 
-Route::get('/', function () {
-    return view('home', [
-        'title' => 'Home'
-    ]);
-});
+Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/about', function () {
     return view('about', [
         'nama' => 'Nicholaus Adhyatma Surya Kusuma',
+        'active' => 'about',
         'email' => 'nicholausadhyatma@gmail.com',
         'job' => 'Web Developers',
         'image' => 'fotoSaya.jpg',
@@ -35,16 +35,8 @@ Route::get('/berita', [BeritaController::class, 'index']);
 
 Route::get('berita/{berita:slug}', [BeritaController::class, 'detail']);
 
-Route::get('category/{category:slug}', function(Category $category) {
-    return view('category', [
-        'title' => $category->name,
-        'berita' => $category->berita
-    ]);
-});
+Route::get('/categories', [CategoryController::class, 'index']);
 
-Route::get('/categories', function() {
-    return view('categories', [
-        'title' => 'All Categories',
-        'categories' => Category::all()
-    ]);
-});
+Route::get('category/{category:slug}', [CategoryController::class, 'detail']);
+
+Route::get('/author/{author:username}', [AuthorController::class, 'index']);

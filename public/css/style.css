@@ -1,2 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Roboto:wght@300;400&display=swap");
 
+* {
+    font-family: "Roboto", sans-serif !important;
+}
 
+body,
+html {
+    height: 100%;
+}
+
+h1,
+h2 {
+    font-weight: bold;
+}
+
+.carousel-item {
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.carousel-caption {
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/opacity/see-through */
+    color: white;
+    font-weight: bold;
+}
+
+.active {
+  font-weight: bold;
+  border-bottom: 1px solid black;
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    -o-border-radius: 100%;
+    padding: 5px;
+}
+
+.mt-6 {
+    margin-top: 100px !important;
+}
+
+.category-bg {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.category-bg:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.bg-trans {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+footer {
+    height: 60px;
+}
+
+@media only screen and (max-width: 997px) {
+    .image {
+        height: 350px;
+    }
+}
