@@ -7,9 +7,9 @@
                 <img class="img-fluid mb-3" src="https://source.unsplash.com/1200x400/?{{ $post->category->name }}"
                     class="card-img-top" alt="image">
                 <h6>Writen By : <a class="text-decoration-none fw-bold"
-                        href="/author/{{ $post->author->username }}">{{ $post->author->name }}</a> in <a
+                        href="/berita?author={{ $post->author->username }}">{{ $post->author->name }}</a> in <a
                         class="text-decoration-none badge bg-primary"
-                        href="/category/{{ $post->category->slug }}">{{ $post->category->name }}</a></h6>
+                        href="/berita?category={{ $post->category->slug }}">{{ $post->category->name }}</a></h6>
                 <article class="mb-3 fs-5">
                     <p>{{ $post->excerpt }}</p>
                     {!! $post->body !!}

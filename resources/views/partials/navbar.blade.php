@@ -8,23 +8,32 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-3">
                 <li class="nav-item">
-                    <a class="nav-link {{ ($active == 'home') ? 'active' : ''}}" href="/">Home</a>
+                    <a class="nav-link {{ $active == 'home' ? 'active' : '' }}" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ ($active == 'about') ? 'active' : ''}}" href="/about">About</a>
+                    <a class="nav-link {{ $active == 'about' ? 'active' : '' }}" href="/about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ ($active == 'berita') ? 'active' : ''}}" href="/berita">Artikel</a>
+                    <a class="nav-link {{ $active == 'berita' ? 'active' : '' }}" href="/berita">Artikel</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ ($active == 'categories') ? 'active' : ''}}" href="/categories">Categories</a>
+                    <a class="nav-link {{ $active == 'categories' ? 'active' : '' }}" href="/categories">Categories</a>
                 </li>
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form action="/berita" class="d-flex">
+                
+                @if( request('category') ) 
+                <input type="hidden" name="category" value="{{ request('category') }}">
+                @endif
+
+                @if( request('author') ) 
+                <input type="hidden" name="author" value="{{ request('author') }}">
+                @endif
+
+                <input class="form-control me-2 form-search" name="search" type="search" placeholder="Search"
+                    aria-label="Search" value="{{ request('search') }}">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>
     </div>
 </nav>
-

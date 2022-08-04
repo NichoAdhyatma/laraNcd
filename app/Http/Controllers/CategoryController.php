@@ -15,12 +15,4 @@ class CategoryController extends Controller
             'categories' => Category::all()
         ]);
     }
-    public function detail(Category $category)
-    {
-        return view('berita', [
-            'title' => "Post By Category : ".$category->name,
-            'active' => 'berita',
-            'berita' => $category->berita->load('author', 'category')
-        ]);
-    }
 }

@@ -22,7 +22,7 @@
         @include('partials.carousel')
     @endif
 
-    <div id="main-content" class="container mt-6 d-flex align-items-center flex-column">
+    <div id="main-content" class="container mt-6 ">
         <h1 class="text-center mb-5">✨ {{ $title }} ✨</h1>
         @yield('content')
 

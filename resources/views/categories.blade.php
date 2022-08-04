@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             @foreach ($categories as $category)
                 <div class="col-md-4">
-                    <a href="/category/{{ $category->slug }}">
+                    <a href="/berita?category={{ $category->slug }}">
                         <div class="card text-white">
                             <img src="https://source.unsplash.com/500x500/?{{ $category->name }}" class="card-img"
                                 alt="img-category">

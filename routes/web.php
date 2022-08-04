@@ -37,6 +37,3 @@ Route::get('berita/{berita:slug}', [BeritaController::class, 'detail']);
 
 Route::get('/categories', [CategoryController::class, 'index']);
 
-Route::get('category/{category:slug}', [CategoryController::class, 'detail']);
-
-Route::get('/author/{author:username}', [AuthorController::class, 'index']);
