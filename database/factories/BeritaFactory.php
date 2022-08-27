@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Berita>
  */
@@ -14,11 +15,12 @@ class BeritaFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
     public function definition()
     {
+
         return [
             'title' => $this->faker->sentence(mt_rand(3, 5)),
-            'slug' => $this->faker->slug(),
             'excerpt' => $this->faker->paragraph(),
             //'body' => '<p>'.implode('</p><p>', $this->faker->paragraphs(8, 16)).'</p>',
             'body' => collect($this->faker->paragraphs(5, 10))

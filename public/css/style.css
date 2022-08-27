@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Roboto:wght@300;400&display=swap");
-
 * {
     font-family: "Roboto", sans-serif !important;
 }
@@ -72,6 +71,6 @@ footer {
 
 @media only screen and (max-width: 997px) {
     .image {
-        height: 350px;
+        height: 300px;
     }
 }

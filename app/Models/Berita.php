@@ -5,10 +5,11 @@ namespace App\Models;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Berita extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
 
     //protected $fillable = ['title', 'slug', 'author', 'excerpt', 'body'];
 
@@ -18,16 +19,11 @@ class Berita extends Model
     public function scopeFilter($query, array $filter)
     {
         $query->when(
-            $filters['search'] ?? false,
+            $filter['search'] ?? false,
             fn ($query, $search) =>
-            $query->where(
-                fn ($query) =>
-                $query->where('title', 'like', '%' . $search . '%')
-                    ->orWhere('body', 'like', '%' . $search . '%')
-            )
-        );
-
-        $query->when(
+            $query->where('title', 'like', '%' . $search . '%')
+                ->orWhere('body', 'like', '%' . $search . '%')
+        )->when(
             $filter['category'] ?? false,
             fn ($query, $category) =>
             $query->whereHas(
@@ -35,14 +31,21 @@ class Berita extends Model
                 fn ($query) =>
                 $query->where('slug', $category)
             )
-        );
-
-        $query->when(
+        )->when(
             $filter['author'] ?? false,
             fn ($query, $author) =>
             $query->whereHas('author', fn ($query) =>
             $query->where('username', $author))
         );
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 
     public function category()
@@ -53,5 +56,10 @@ class Berita extends Model
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

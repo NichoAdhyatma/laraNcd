@@ -2,23 +2,47 @@
 
 @section('content')
     <div class="container">
+        <div class="row justify-content-center mb-3">
+            <div class="col-lg-6">
+                <form action="/berita" class="d-flex w-100">
+
+                    @if (request('category'))
+                        <input type="hidden" name="category" value="{{ request('category') }}">
+                    @endif
+
+                    @if (request('author'))
+                        <input type="hidden" name="author" value="{{ request('author') }}">
+                    @endif
+
+                    <input class="form-control me-2" name="search" type="text" placeholder="Search"
+                        aria-label="Search" value="{{ request('search') }}">
+                    <input type="submit" value="Search" class="btn btn-outline-success">
+                </form>
+            </div>
+        </div>
         @if ($berita->count())
-            <div class="card mb-3">
-                <img src="https://source.unsplash.com/1200x400/?{{ $berita[0]->category->name }}" class="card-img-top"
-                    alt="image">
-                <div class="card-body">
-                    <a href="/berita/{{ $berita[0]->slug }}" class="text-decoration-none text-dark">
-                        <h3 class="card-title fw-bolder">✨{{ $berita[0]->title }}✨</h3>
-                    </a>
-                    <h6>Writen By :
-                        <a class="text-decoration-none fw-bolder"
-                            href="/berita?author={{ $berita[0]->author->username }}">{{ $berita[0]->author->name }}</a> in
-                        <a class="text-decoration-none badge bg-primary"
-                            href="/berita?category={{ $berita[0]->category->slug }}">{{ $berita[0]->category->name }}</a>
-                        <span class="text-muted">{{ $berita[0]->created_at->diffForHumans() }}</span>
-                    </h6>
-                    <p class="card-text">{{ $berita[0]->excerpt }}</p>
-                    <a href="/berita/{{ $berita[0]->slug }}" class="text-decoration-none btn btn-primary">Read More</a>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card mb-3 ">
+                        <img src="https://source.unsplash.com/1200x400/?{{ $berita[0]->category->name }}"
+                            class="card-img-top" alt="image">
+                        <div class="card-body">
+                            <a href="/berita/{{ $berita[0]->slug }}" class="text-decoration-none text-dark">
+                                <h3 class="card-title fw-bolder">✨{{ $berita[0]->title }}✨</h3>
+                            </a>
+                            <h6>Writen By :
+                                <a class="text-decoration-none fw-bolder"
+                                    href="/berita?author={{ $berita[0]->author->username }}">{{ $berita[0]->author->name }}</a>
+                                in
+                                <a class="text-decoration-none badge bg-primary"
+                                    href="/berita?category={{ $berita[0]->category->slug }}">{{ $berita[0]->category->name }}</a>
+                                <span class="text-muted">{{ $berita[0]->created_at->diffForHumans() }}</span>
+                            </h6>
+                            <p class="card-text">{{ $berita[0]->excerpt }}</p>
+                            <a href="/berita/{{ $berita[0]->slug }}" class="text-decoration-none btn btn-primary">Read
+                                More</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 

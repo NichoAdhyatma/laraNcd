@@ -13,23 +13,24 @@ class BeritaController extends Controller
     {
         $title = 'All Post Artikel';
 
-        if ( request('search') ) $title = 'Search result : ' . request('search');
+        if (request('search')) $title = 'Search result : ' . request('search');
 
         if (request('author')) {
-            $author = User::firstWhere( 'username', request('author') );
-            $title .= ' by ' . $author->name ;
-        } 
+            $author = User::firstWhere('username', request('author'));
+            if ($author)
+                $title .= ' by ' . $author->name;
+        }
 
-        if ( request('category') ) {
-            $category = Category::firstWhere( 'slug', request('category') );
-            $title .= ' in ' . $category->name ;
-        } 
+        if (request('category')) {
+            $category = Category::firstWhere('slug', request('category'));
+            if ($category)
+                $title .= ' in ' . $category->name;
+        }
 
         return view('berita', [
             'title' => $title,
-            'active' => 'berita',
             'berita' => Berita::latest()->filter(request(['search', 'category', 'author']))
-            ->paginate(7)->withQueryString()
+                ->paginate(7)->withQueryString()
         ]);
     }
 
@@ -37,7 +38,6 @@ class BeritaController extends Controller
     {
         return view('berita-detail', [
             'title' => $berita->title,
-            'active' => 'berita',
             'post' => $berita
         ]);
     }
